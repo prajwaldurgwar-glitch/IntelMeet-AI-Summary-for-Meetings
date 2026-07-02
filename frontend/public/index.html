@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="alternate icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#4facfe" />
+    <meta name="description" content="IntelMeet - AI Summary for Meetings with Real-time Collaboration, Screen Sharing, Breakout Rooms, Polls, and Advanced Analytics" />
+    <meta name="keywords" content="video conferencing, online meetings, webrtc, screen sharing, collaboration, AI meetings" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IntelMeet - AI Summary for Meetings" />
+    <meta property="og:description" content="Professional video conferencing with AI-powered features, real-time collaboration, and advanced analytics" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IntelMeet - AI Summary for Meetings" />
+    <meta name="twitter:description" content="Professional video conferencing with AI-powered features" />
+    
+    <!-- Apple Mobile Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="IntelMeet" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>IntelMeet - AI Summary for Meetings</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Critical CSS for initial render */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        overflow-x: hidden;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading Screen */
+      .app-loading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: 10px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      
+      /* No JavaScript Warning */
+      noscript {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1a202c;
+        color: white;
+        padding: 20px;
+      }
+      
+      .noscript-content {
+        text-align: center;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 12px;
+      }
+      
+      .noscript-content i {
+        font-size: 4rem;
+        color: #fc8181;
+        margin-bottom: 20px;
+      }
+      
+      .noscript-content h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+      
+      .noscript-content p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #cbd5e0;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div class="noscript-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h1>JavaScript Required</h1>
+        <p>
+          IntelMeet requires JavaScript to be enabled in your browser for video conferencing,
+          real-time collaboration, and AI-powered features to work properly.
+        </p>
+        <p style="margin-top: 20px;">
+          Please enable JavaScript in your browser settings and refresh the page.
+        </p>
+      </div>
+    </noscript>
+    
+    <div id="root">
+      <!-- Initial loading state -->
+      <div class="app-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">
+          <i class="fas fa-video"></i> Loading IntelMeet...
+        </div>
+      </div>
+    </div>
+    
+    <!-- Browser compatibility check -->
+    <script>
+      // Check for WebRTC support
+      (function() {
+        const isWebRTCSupported = !!(
+          navigator.mediaDevices &&
+          navigator.mediaDevices.getUserMedia &&
+          window.RTCPeerConnection
+        );
+        
+        if (!isWebRTCSupported) {
+          document.getElementById('root').innerHTML = `
+            <div class="app-loading">
+              <div style="text-align: center; max-width: 600px; padding: 20px;">
+                <i class="fas fa-exclamation-circle" style="font-size: 4rem; color: #fc8181; margin-bottom: 20px;"></i>
+                <h1 style="font-size: 2rem; margin-bottom: 15px;">Browser Not Supported</h1>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+                  Your browser doesn't support WebRTC, which is required for video conferencing.
+                  Please use a modern browser like Chrome, Firefox, Safari, or Edge.
+                </p>
+              </div>
+            </div>
+          `;
+        }
+      })();
+    </script>
+  </body>
+</html>

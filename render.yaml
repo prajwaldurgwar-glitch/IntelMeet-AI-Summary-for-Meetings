@@ -1,0 +1,49 @@
+# Render Blueprint for SmartMeet Backend
+# This file enables one-click deployment to Render.com
+# Documentation: https://render.com/docs/blueprint-spec
+
+services:
+  # Backend Web Service
+  - type: web
+    name: smartmeet-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false  # User must provide this
+      - key: GEMINI_API_KEY
+        sync: false  # User must provide this
+      - key: ALLOWED_ORIGINS
+        sync: false  # User must provide this (e.g., https://your-frontend.vercel.app)
+      - key: METERED_TURN_URLS
+        sync: false  # Optional - TURN server for cross-network WebRTC
+      - key: METERED_TURN_USERNAME
+        sync: false  # Optional
+      - key: METERED_TURN_CREDENTIAL
+        sync: false  # Optional
+    autoDeploy: true
+
+  # Frontend Static Site (uncomment if hosting the React app on Render too)
+  # - type: web
+  #   name: smartmeet-frontend
+  #   env: static
+  #   rootDir: frontend
+  #   buildCommand: npm install && npm run build
+  #   staticPublishPath: build
+  #   envVars:
+  #     - key: REACT_APP_API_URL
+  #       sync: false  # e.g., https://smartmeet-backend.onrender.com
+  #     - key: REACT_APP_SOCKET_URL
+  #       sync: false  # same as REACT_APP_API_URL
+  #   routes:
+  #     - type: rewrite
+  #       source: /*
+  #       destination: /index.html
+  #   autoDeploy: true

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@google/genai": "^2.10.0",
+    "@mediapipe/tasks-vision": "^0.10.22-rc.20250304",
+    "mongoose": "^9.0.0"
+  }
+}

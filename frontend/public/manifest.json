@@ -1,0 +1,21 @@
+{
+  "short_name": "IntelMeet",
+  "name": "IntelMeet - AI Summary for Meetings",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4facfe",
+  "background_color": "#ffffff",
+  "description": "AI-Powered Video Conferencing Platform with Real-time Collaboration"
+}
